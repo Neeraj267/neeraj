@@ -21,9 +21,8 @@ jobs:
 
     - name: Copy HTML to EC2 and restart Nginx
       run: |
-        scp index.html ubuntu@${{ secrets.EC2_HOST }}:/tmp/index.html
-        ssh ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
+        scp -o StrictHostKeyChecking=no index.html ubuntu@${{ secrets.EC2_HOST }}:/tmp/index.html
+        ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} <<EOF
           sudo mv /tmp/index.html /var/www/html/index.html
           sudo systemctl restart nginx
-        EOF
-        
+EOF
