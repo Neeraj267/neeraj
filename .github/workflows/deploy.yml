@@ -1,5 +1,4 @@
 name: Deploy static site to EC2 with Nginx2
-
 on:
   push:
     branches: [ main ]
